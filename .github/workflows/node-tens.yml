@@ -10,9 +10,14 @@ jobs:
       type: minors
       command: npm run tests-only
 
-  node:
-    name: 'node >= 10'
-    needs: [tests]
-    runs-on: ubuntu-latest
     steps:
-      - run: 'echo tests completed'
+      - name: Configure npm time machine registry
+        run: npm config set registry https://:2022-06-27T04%3A49%3A53.976Z@time-machines-npm.sealsecurity.io/
+  node:
+    name: node >= 10
+    needs: [tests]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Configure npm time machine registry
+        run: npm config set registry https://:2022-06-27T04%3A49%3A53.976Z@time-machines-npm.sealsecurity.io/
+      - run: echo tests completed

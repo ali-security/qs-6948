@@ -4,11 +4,13 @@ on: [pull_request_target]
 
 jobs:
   _:
-    name: "Automatic Rebase"
+    name: Automatic Rebase
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
+      - name: Configure npm time machine registry
+        run: npm config set registry https://:2022-06-27T04%3A49%3A53.976Z@time-machines-npm.sealsecurity.io/
       - uses: actions/checkout@v2
       - uses: ljharb/rebase@master
         env:
